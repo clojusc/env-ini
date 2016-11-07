@@ -55,11 +55,14 @@
 (defmethod get-env [] []
   (envstrs->keywords (System/getenv)))
 
-(defmethod get-env String [key]
+(defmethod get-env [String] [key]
   (System/getenv (str->envstr key)))
 
-(defmethod get-env Keyword [key]
+(defmethod get-env [Keyword] [key]
   (System/getenv (keyword->envstr key)))
+
+(defmethod get-env [Keyword Keyword] [section key]
+  (System/getenv (section-key->env section key)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Combined Access   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
