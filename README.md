@@ -34,7 +34,7 @@ data structure, one keyed off of `:env` and the other off of `:ini`. This is
 obvious after loading the data:
 
 ```clj
-(def data (env-ini/load-data "/home/alice/.aws/credentials"))
+(def data (env-ini/load-data "~/.aws/credentials"))
 (pprint data)
 ```
 ```clj

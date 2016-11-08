@@ -6,3 +6,8 @@
 
 (defn under->dash [str]
   (string/replace str "_" "-"))
+
+(defn expand-home
+  ""
+  [filename]
+  (.replaceFirst filename "^~" (System/getProperty "user.home")))

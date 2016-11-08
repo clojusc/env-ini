@@ -40,7 +40,7 @@
                :or {force-reload? false keywordize? true}
                :as all-args}]
   (let [args (flatten
-               (into [filename]
+               (into [(util/expand-home filename)]
                  (assoc
                    (dissoc all-args :force-reload?)
                    :keywordize? keywordize?)))]
