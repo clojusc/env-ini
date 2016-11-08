@@ -1,4 +1,4 @@
-(defproject clojusc/env-ini "0.1.0-SNAPSHOT"
+(defproject clojusc/env-ini "0.1.0"
   :description "Access config data from the ENV or INI files"
   :url "https://github.com/clojusc/env-ini"
   :license
