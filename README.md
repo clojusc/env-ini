@@ -65,9 +65,13 @@ two different keys, the env one first, and then the config key:
 clojusc.env-ini.dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
 ```
 
-Note that keywords are upper-cased (with dashed converting to underscores). the
-above example of `:my-env-key` would actually be looked up in the environment
-under `MY_ENV_KEY`.
+This would result in the environment variable `MY_ENV_KEY` being changed. If
+and only if a nil result was obtained, would the loaded Config/INI data be
+checked for the value associated with the `:my-ini-key` key in the section
+`:mysection`.
+
+Note that environment variable names are loaded as lower-cased keywords (with
+underscores converte to dashes).
 
 
 ## License
