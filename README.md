@@ -23,7 +23,7 @@
 Config/INI files are an old stand-by for configuration. Even now, projects such
 as AWS and OpenStack clients use the Config/INI format. Still, environment
 variables reign supreme in different deployment configurations, so it would be
-nice to use them both, with ENV settings overriding Config/INI ones. This this
+nice to use them both, with ENV settings overriding Config/INI ones. Thus this
 project was created.
 
 This project uses the [clojure-ini][clojure ini] project to read Config/INI
