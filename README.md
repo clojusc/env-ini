@@ -20,12 +20,48 @@
 
 ## Introduction
 
-TBD
+Config/INI files are an old stand-by for configuration. Even now, projects such
+as AWS and OpenStack clients use the Config/INI format. Still, environment
+variables reign supreme in different deployment configurations, so it would be
+nice to use them both, with ENV settings overriding Config/INI ones. This this
+project was created.
 
 
 ## Usage
 
-TBD
+Data from the environment and a given configuration are loaded into the same
+data structure, one keyed off of `:env` and the other off of `:ini`. This is
+obvious after loading the data:
+
+```clj
+(def data (env-ini/load-data "/home/alice/.aws/credentials"))
+(pprint data)
+```
+```clj
+{:ini
+ {:alice
+  {:aws-access-key-id "AAAAAAAABBBBBBBBCCCD",
+   :aws-secret-access-key "ZZZZZZZZZZZZZXXXXXXXXXXXXXXXXXXxYYYYY123"}},
+ :env
+ {:aws-access-key-id "AAAAAAAABBBBBBBBCCCD",
+  ...}}
+  ```
+
+By default, it is assumed that a key `mykey` in section `mysection` of a
+Config/INI file would be overridden with the environment variable
+`MYSECTION_MYKEY`:
+
+```clj
+clojusc.env-ini.dev=> (env-ini/get data :mysection :mykey)
+```
+
+If the envionment and configuration key don't act in that way, you can provide
+two different keys, the env one first, and then the config key:
+
+```clj
+clojusc.env-ini.dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
+```
+
 
 
 ## License
