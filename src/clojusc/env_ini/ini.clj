@@ -1,8 +1,8 @@
-(ns clojusc.ini-env.ini
+(ns clojusc.env-ini.ini
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
             [clojure-ini.core :as ini]
-            [clojusc.ini-env.util :as util])
+            [clojusc.env-ini.util :as util])
   (:import [clojure.lang Keyword])
   (:refer-clojure :exclude [get read]))
 

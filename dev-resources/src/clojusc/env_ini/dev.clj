@@ -1,12 +1,12 @@
-(ns clojusc.ini-env.dev
+(ns clojusc.env-ini.dev
   (:require [clojure.pprint :refer [print-table]]
             [clojure.reflect :refer [reflect]]
             [clojure.string :as string]
             [clojure-ini.core :as config-ini]
-            [clojusc.ini-env.core :as ini-env]
-            [clojusc.ini-env.env :as env]
-            [clojusc.ini-env.ini :as ini]
-            [clojusc.ini-env.util :as util]))
+            [clojusc.env-ini.core :as env-ini]
+            [clojusc.env-ini.env :as env]
+            [clojusc.env-ini.ini :as ini]
+            [clojusc.env-ini.util :as util]))
 
 (defn show-methods
   ""

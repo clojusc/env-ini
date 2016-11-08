@@ -1,4 +1,4 @@
-(ns clojusc.ini-env.util
+(ns clojusc.env-ini.util
   (:require [clojure.string :as string]))
 
 (defn dash->under [str]

@@ -1,4 +1,4 @@
-# ini-env
+# env-ini
 
 [![Build Status][travis-badge]][travis]
 [![Dependencies Status][deps-badge]][deps]
@@ -8,7 +8,7 @@
 
 [![][logo]][logo-large]
 
-*Access config data from INI files or the ENV*
+*Access config data from the ENV or INI files*
 
 
 #### Table of Contents
@@ -37,16 +37,16 @@ Apache License, Version 2.0.
 
 <!-- Named page links below: /-->
 
-[travis]: https://travis-ci.org/clojusc/ini-env
-[travis-badge]: https://travis-ci.org/clojusc/ini-env.png?branch=master
-[deps]: http://jarkeeper.com/clojusc/ini-env
-[deps-badge]: http://jarkeeper.com/clojusc/ini-env/status.svg
+[travis]: https://travis-ci.org/clojusc/env-ini
+[travis-badge]: https://travis-ci.org/clojusc/env-ini.png?branch=master
+[deps]: http://jarkeeper.com/clojusc/env-ini
+[deps-badge]: http://jarkeeper.com/clojusc/env-ini/status.svg
 [logo]: resources/images/logo.png
 [logo-large]: resources/images/logo-large.png
-[tag-badge]: https://img.shields.io/github/tag/clojusc/ini-env.svg?maxAge=2592000
-[tag]: https://github.com/clojusc/ini-env/tags
+[tag-badge]: https://img.shields.io/github/tag/clojusc/env-ini.svg?maxAge=2592000
+[tag]: https://github.com/clojusc/env-ini/tags
 [clojure-v]: https://img.shields.io/badge/clojure-1.8.0-blue.svg
-[clojars]: https://clojars.org/clojusc/ini-env
-[clojars-badge]: https://img.shields.io/clojars/v/clojusc/ini-env.svg
+[clojars]: https://clojars.org/clojusc/env-ini
+[clojars-badge]: https://img.shields.io/clojars/v/clojusc/env-ini.svg
 
 

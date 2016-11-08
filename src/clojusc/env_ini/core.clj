@@ -1,7 +1,7 @@
-(ns clojusc.ini-env.core
+(ns clojusc.env-ini.core
   "Combined functions for config INI files and ENV data."
-  (:require [clojusc.ini-env.env :as env]
-            [clojusc.ini-env.ini :as ini])
+  (:require [clojusc.env-ini.env :as env]
+            [clojusc.env-ini.ini :as ini])
   (:refer-clojure :exclude [get]))
 
 (defn get
