@@ -8,6 +8,27 @@
 ;;;   INI Convenience Functions / Wrappers   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn -read-ini
+  ""
+  [args]
+  (apply ini/read-ini args))
+
+(def -memoized-read-ini (memoize -read-ini))
+
+(defn read-ini
+  [filename & {:keys [force-reload? keywordize?]
+               :or {force-reload? false keywordize? true}
+               :as all-args}]
+  (let [args (flatten (into [filename] (dissoc all-args :force-reload?)))]
+    (if force-reload?
+      (-read-ini args)
+      (-memoized-read-ini args))))
+
+(defn get-ini
+  ""
+  [data section key]
+  (get-in data [section key]))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Convenience Functions / Wrappers   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -48,12 +69,28 @@
     (format "%s_%s" (keyword->envstr section)
                     (keyword->envstr key))))
 
+(defn -read-env
+  ""
+  [& {:keys [keywordize?]
+      :or {keywordize? true}}]
+  (if keywordize?
+    (envstrs->keywords (System/getenv))
+    (System/getenv)))
+
+(def -memoized-read-env (memoize -read-env))
+
+(defn read-env
+  [& {:keys [force-reload? keywordize?]
+      :or {force-reload? false keywordize? true}
+      :as all-args}]
+  (let [args (flatten (into [] (dissoc all-args :force-reload?)))]
+    (if force-reload?
+      (apply -read-env args)
+      (apply -memoized-read-env args))))
+
 (defmulti get-env
   (fn ([& args]
     (mapv class (into [] args)))))
-
-(defmethod get-env [] []
-  (envstrs->keywords (System/getenv)))
 
 (defmethod get-env [String] [key]
   (System/getenv (str->envstr key)))
@@ -70,8 +107,16 @@
 
 (defn get
   ""
-  ([key]
-    (or (get-env key)
-        (get-env :default key)))
-  ([section key]
-    (get-env section key)))
+  ([data key]
+    (or (get-env data key)
+        (get-env data :default key)
+        (get-ini data :default key)))
+  ([data section key]
+    (or (get-env data section key)
+        (get-ini data section key))))
+
+(defn load-data
+  ""
+  [filename & args]
+  {:ini (apply read-ini (into [filename] args))
+   :env (apply read-env args)})
