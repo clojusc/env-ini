@@ -26,6 +26,9 @@ variables reign supreme in different deployment configurations, so it would be
 nice to use them both, with ENV settings overriding Config/INI ones. This this
 project was created.
 
+This project uses the [clojure-ini][clojure ini] project to read Config/INI
+files.
+
 
 ## Usage
 
@@ -87,5 +90,4 @@ Apache License, Version 2.0.
 [clojure-v]: https://img.shields.io/badge/clojure-1.8.0-blue.svg
 [clojars]: https://clojars.org/clojusc/env-ini
 [clojars-badge]: https://img.shields.io/clojars/v/clojusc/env-ini.svg
-
-
+[clojure ini]: https://github.com/jonase/clojure-ini
