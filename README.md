@@ -62,6 +62,9 @@ two different keys, the env one first, and then the config key:
 clojusc.env-ini.dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
 ```
 
+Note that keywords are upper-cased (with dashed converting to underscores). the
+above example of `:my-env-key` would actually be looked up in the environment
+under `MY_ENV_KEY`.
 
 
 ## License
