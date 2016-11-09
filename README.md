@@ -92,7 +92,7 @@ Apache License, Version 2.0.
 [deps-badge]: http://jarkeeper.com/clojusc/env-ini/status.svg
 [logo]: resources/images/logo.png
 [logo-large]: resources/images/logo-large.png
-[tag-badge]: https://img.shields.io/github/tag/clojusc/env-ini.svg?maxAge=2592000
+[tag-badge]: https://img.shields.io/github/tag/clojusc/env-ini.svg
 [tag]: https://github.com/clojusc/env-ini/tags
 [clojure-v]: https://img.shields.io/badge/clojure-1.8.0-blue.svg
 [clojars]: https://clojars.org/clojusc/env-ini
