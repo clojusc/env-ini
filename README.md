@@ -66,8 +66,8 @@ two different keys, the env one first, and then the config key:
 clojusc.env-ini.dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
 ```
 
-This would result in the environment variable `MY_ENV_KEY` being changed. If
-and only if a nil result was obtained, would the loaded Config/INI data be
+This would result in the environment variable `MY_ENV_KEY` being looked up. If
+and only if a nil result was obtained, the loaded Config/INI data would be
 checked for the value associated with the `:my-ini-key` key in the section
 `:mysection`.
 
