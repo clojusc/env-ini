@@ -8,7 +8,7 @@
     [[org.clojure/clojure "1.8.0"]
      [org.clojure/clojurescript "1.9.293"]
      [clojure-ini "0.0.2"]]
-  :source-paths ["src/cljs"]
+  :source-paths ["src/clj"]
   :plugins
     [[lein-cljsbuild "1.1.4"]
      [lein-npm "0.6.2"]]
@@ -39,6 +39,16 @@
        "dev-resources/src/clj/clojusc/env_ini/browser-dev.clj"]
      }
   :profiles {
+    :test {
+      :plugins [
+        [jonase/eastwood "0.2.3" :exclusions [org.clojure/clojure]]
+        [lein-kibit "0.1.2" :exclusions [org.clojure/clojure]]]
+      :test-selectors {
+        :default :unit
+        :unit :unit
+        :system :system
+        :integration :integration}
+      :source-paths ["test/clj"]}
     :dev {
       :source-paths ["dev-resources/src/clj"]
       :repl-options {:init-ns clojusc.env-ini.dev}
