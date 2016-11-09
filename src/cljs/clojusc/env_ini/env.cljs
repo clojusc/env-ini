@@ -2,25 +2,34 @@
   (:require [clojure.string :as string]
             [clojusc.env-ini.common-env :as common]
             [clojusc.env-ini.util :as util])
-  (:import [clojure.lang Keyword])
   (:refer-clojure :exclude [get read]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;   Wrapper for System/getenv   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Utility functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn jsx->clj
+  [obj]
+  (into {} (for [k (.keys js/Object obj)] [k (aget obj k)])))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Wrapper for aget js/process "env"   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def system-getenv (partial aget js/process "env"))
 
 (defmulti get-env
   (fn ([& args]
     (mapv class (into [] args)))))
 
 (defmethod get-env [String] [key]
-  (System/getenv (common/str->envstr key)))
+  (system-getenv (common/str->envstr key)))
 
 (defmethod get-env [Keyword] [key]
-  (System/getenv (common/keyword->envstr key)))
+  (system-getenv (common/keyword->envstr key)))
 
 (defmethod get-env [Keyword Keyword] [section key]
-  (System/getenv (common/section-key->env section key)))
+  (system-getenv (common/section-key->env section key)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Reader   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -32,7 +41,7 @@
       :or {keywordize? true}}]
   (if keywordize?
     (common/envstrs->keywords (System/getenv))
-    (System/getenv)))
+    (jsx->clj (system-getenv))))
 
 (def memoized-read-env (memoize read-env))
 

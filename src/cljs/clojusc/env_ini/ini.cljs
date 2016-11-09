@@ -1,10 +1,9 @@
 (ns clojusc.env-ini.ini
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojure-ini.core :as ini]
+            ;[clojure-ini.core :as ini]
             [clojusc.env-ini.common-ini :as common]
             [clojusc.env-ini.util :as util])
-  (:import [clojure.lang Keyword])
   (:refer-clojure :exclude [get read]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -15,9 +14,10 @@
   ""
   [filename & {:keys [keywordize?]
                :or {keywordize? true}}]
-  (if keywordize?
-    (common/inistrs->keywords (ini/read-ini filename))
-    (ini/read-ini filename)))
+  ; (if keywordize?
+  ;   (common/inistrs->keywords (ini/read-ini filename))
+  ;   (ini/read-ini filename)))
+  {})
 
 (def memoized-read-ini (memoize read-ini))
 
