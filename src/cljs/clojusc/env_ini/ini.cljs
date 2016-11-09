@@ -1,10 +1,9 @@
 (ns clojusc.env-ini.ini
+  "Clojurescript INI support."
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
             ;[clojure-ini.core :as ini]
-            [clojusc.env-ini.common-ini :as common]
-            [clojusc.env-ini.util :as util])
-  (:refer-clojure :exclude [get read]))
+            [clojusc.env-ini.util :as util]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Wrapper for clojure-ini   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

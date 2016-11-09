@@ -1,12 +1,14 @@
 (ns clojusc.env-ini.env
+  "Clojure(script) ENV support."
   (:require [clojure.string :as string]
-            [clojusc.env-ini.common-env :as common]
+            [clojusc.env-ini.system :as system]
             [clojusc.env-ini.util :as util])
+  #?@(:clj [
   (:import [clojure.lang Keyword])
-  (:refer-clojure :exclude [get read]))
+  (:refer-clojure :exclude [get read])]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;   Wrapper for System/getenv   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Wrapper for getenv   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmulti get-env
@@ -14,13 +16,13 @@
     (mapv class (into [] args)))))
 
 (defmethod get-env [String] [key]
-  (System/getenv (common/str->envstr key)))
+  (system/getenv (util/str->envstr key)))
 
 (defmethod get-env [Keyword] [key]
-  (System/getenv (common/keyword->envstr key)))
+  (system/getenv (util/keyword->envstr key)))
 
 (defmethod get-env [Keyword Keyword] [section key]
-  (System/getenv (common/section-key->env section key)))
+  (system/getenv (util/section-key->env section key)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Reader   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -31,8 +33,8 @@
   [& {:keys [keywordize?]
       :or {keywordize? true}}]
   (if keywordize?
-    (common/envstrs->keywords (System/getenv))
-    (System/getenv)))
+    (util/envstrs->keywords (system/getenv))
+    (system/getenv)))
 
 (def memoized-read-env (memoize read-env))
 
@@ -46,7 +48,7 @@
       (apply memoized-read-env args))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;   INI Operations Against Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   ENV Operations Against Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn get
@@ -54,4 +56,4 @@
   ([data key]
     (get-in data [:env key]))
   ([data section key]
-    (get-in data [:env (common/section-key->env section key)])))
+    (get-in data [:env (util/section-key->env section key)])))
