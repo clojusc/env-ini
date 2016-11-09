@@ -27,7 +27,8 @@ nice to use them both, with ENV settings overriding Config/INI ones. Thus this
 project was created.
 
 This project uses the [clojure-ini][clojure ini] project to read Config/INI
-files.
+files. For Clojurescript support, Node.js, NPM, and lein-npm are used. JS INI file
+support is provided by the Node.js better-require library.
 
 
 ## Usage
