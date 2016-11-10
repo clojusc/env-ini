@@ -3,7 +3,8 @@
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
             ;[clojure-ini.core :as ini]
-            [clojusc.env-ini.util :as util]))
+            [clojusc.env-ini.util :as util])
+  (:refer-clojure :exclude [get read]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Wrapper for clojure-ini   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

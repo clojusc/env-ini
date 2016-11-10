@@ -3,9 +3,8 @@
   (:require [clojure.string :as string]
             [clojusc.env-ini.system :as system]
             [clojusc.env-ini.util :as util])
-  #?@(:clj [
-  (:import [clojure.lang Keyword])
-  (:refer-clojure :exclude [get read])]))
+  #?(:clj (:import [clojure.lang Keyword]))
+  (:refer-clojure :exclude [get read]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Wrapper for getenv   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -13,10 +12,15 @@
 
 (defmulti get-env
   (fn ([& args]
-    (mapv class (into [] args)))))
+    (mapv type (into [] args)))))
 
-(defmethod get-env [String] [key]
-  (system/getenv (util/str->envstr key)))
+#?(:clj
+  (defmethod get-env [String] [key]
+    (system/getenv (util/str->envstr key))))
+
+#?(:cljs
+  (defmethod get-env [js/String] [key]
+    (system/getenv (util/str->envstr key))))
 
 (defmethod get-env [Keyword] [key]
   (system/getenv (util/keyword->envstr key)))

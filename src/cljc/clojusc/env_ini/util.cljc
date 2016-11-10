@@ -1,4 +1,5 @@
 (ns clojusc.env-ini.util
+  "General utility functions."
   #?(:clj (:require [clojure.string :as string]
                     [clojure.walk :as walk]))
 
