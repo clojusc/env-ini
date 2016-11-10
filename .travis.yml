@@ -1,7 +1,9 @@
 language: clojure
 script:
   - lein compile
-  - lein uberjar
+  - lein jar
+  - lein cljsbuild once env-ini
+  - lein cljsbuild once node
   - lein test
 jdk:
   - oraclejdk8
