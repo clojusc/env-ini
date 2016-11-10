@@ -9,7 +9,7 @@
 
 [![][logo]][logo-large]
 
-*Access config data from the ENV or INI files*
+*Clojure(script) functions for accessing config data from the ENV or INI files*
 
 
 #### Contents

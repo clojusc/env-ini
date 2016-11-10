@@ -1,5 +1,5 @@
 (defproject clojusc/env-ini "0.2.0-SNAPSHOT"
-  :description "Access config data from the ENV or INI files"
+  :description "Clojure(script) functions for accessing config data from the ENV or INI files"
   :url "https://github.com/clojusc/env-ini"
   :license
     {:name "Apache License, Version 2.0"
