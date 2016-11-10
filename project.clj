@@ -37,7 +37,7 @@
       ["trampoline" "run" "-m" "clojure.main"
        "dev-resources/src/clj/clojusc/env_ini/node-dev.clj"]
     "browser-repl"
-      ^{:doc "Start a Node.js-based Clojurescript REPL"}
+      ^{:doc "Start a browser-based Clojurescript REPL"}
       ["trampoline" "run" "-m" "clojure.main"
        "dev-resources/src/clj/clojusc/env_ini/browser-dev.clj"]
      }
