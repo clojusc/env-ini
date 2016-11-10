@@ -16,6 +16,8 @@
 
 * [Introduction](#introduction-)
 * [Usage](#usage-)
+  * [Clojure](#clojure-)
+  * [Clojurescript](#clojurescript-)
 * [License](#license-)
 
 
@@ -81,13 +83,18 @@ underscores converte to dashes).
 
 ### Clojurescript
 
-The usage is exactly the same from Clojurescript. First some setup:
+The usage is exactly the same from Clojurescript. In a Node.js Clojurescript
+REPL, let's bring in the required namespace:
 
+
+```
+$ make node-repl
+```
 ```clj
-(require '[clojusc.env-ini.core :as env-ini])
+clojusc.env-ini.node-dev=> (require '[clojusc.env-ini.core :as env-ini])
 ```
 
-Then running the same code as above:
+Then run the same code as above:
 
 ```clj
 clojusc.env-ini.node-dev=> (def data (env-ini/load-data "~/.aws/credentials"))
