@@ -13,7 +13,7 @@
      [lein-npm "0.6.2"]]
   :npm
     {:dependencies
-      [[better-require "0.0.3"]]}
+      [[ini "1.3.4"]]}
   :cljsbuild {
     :builds [
       {:id "env-ini"
