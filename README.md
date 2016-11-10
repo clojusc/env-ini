@@ -21,7 +21,7 @@
 * [License](#license-)
 
 
-## Introduction
+## Introduction [&#x219F;](#contents)
 
 Config/INI files are an old stand-by for configuration. Even now, projects such
 as AWS and OpenStack clients use the Config/INI format. Still, environment
@@ -34,10 +34,10 @@ files. For Clojurescript support, Node.js, NPM, and lein-npm are used. JS INI fi
 support is provided by the Node.js better-require library.
 
 
-## Usage
+## Usage [&#x219F;](#contents)
 
 
-### Clojure
+### Clojure [&#x219F;](#contents)
 
 Data from the environment and a given configuration are loaded into the same
 data structure, one keyed off of `:env` and the other off of `:ini`. This is
@@ -81,7 +81,7 @@ Note that environment variable names are loaded as lower-cased keywords (with
 underscores converte to dashes).
 
 
-### Clojurescript
+### Clojurescript [&#x219F;](#contents)
 
 The usage is exactly the same from Clojurescript. In a Node.js Clojurescript
 REPL, let's bring in the required namespace:
@@ -105,7 +105,7 @@ clojusc.env-ini.node-dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
 ```
 
 
-## License
+## License [&#x219F;](#contents)
 
 Copyright © 2016, Clojure-Aided Enrichment Center
 
