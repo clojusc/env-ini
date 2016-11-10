@@ -30,7 +30,7 @@
 #?(:cljs
   (defn jsx->clj
     [obj]
-    (into {} (for [k (.keys js/Object obj)] [k (aget obj k)]))))
+    (into {} (map #(vector % (aget data %)) (.keys js/Object data)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Utility Functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
