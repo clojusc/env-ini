@@ -4,6 +4,7 @@
 [![Dependencies Status][deps-badge]][deps]
 [![Clojars Project][clojars-badge]][clojars]
 [![Tag][tag-badge]][tag]
+[![JDK version][jdk-v]](.travis.yml)
 [![Clojure version][clojure-v]](project.clj)
 
 [![][logo]][logo-large]
@@ -95,6 +96,7 @@ Apache License, Version 2.0.
 [tag-badge]: https://img.shields.io/github/tag/clojusc/env-ini.svg
 [tag]: https://github.com/clojusc/env-ini/tags
 [clojure-v]: https://img.shields.io/badge/clojure-1.8.0-blue.svg
+[jdk-v]: https://img.shields.io/badge/jdk-1.7+-blue.svg
 [clojars]: https://clojars.org/clojusc/env-ini
 [clojars-badge]: https://img.shields.io/clojars/v/clojusc/env-ini.svg
 [clojure ini]: https://github.com/jonase/clojure-ini
