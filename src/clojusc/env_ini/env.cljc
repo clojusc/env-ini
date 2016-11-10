@@ -14,6 +14,9 @@
   (fn ([& args]
     (mapv type (into [] args)))))
 
+(defmethod get-env [] [key]
+  (system/getenv))
+
 #?(:clj
   (defmethod get-env [String] [key]
     (system/getenv (util/str->envstr key))))

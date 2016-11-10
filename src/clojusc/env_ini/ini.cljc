@@ -1,5 +1,5 @@
 (ns clojusc.env-ini.ini
-  "Clojure INI support."
+  "Clojure(script) INI support."
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
             #?(:clj [clojure-ini.core :as ini])
@@ -11,17 +11,28 @@
 ;;;   Wrapper for clojure-ini   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+#?(:cljs
+  (defn wrap-nodejs-ini
+    ""
+    [filename]
+    (let [fs (js/require "fs")
+          ini (js/require "ini")]
+      (->> "utf-8"
+           (.readFileSync fs filename)
+           (.parse ini)
+           (util/jsx->clj)))))
+
 (defn read-as-keywords
   ""
   [filename]
   #?(:clj (util/inistrs->keywords (ini/read-ini filename)))
-  #?(:cljs {}))
+  #?(:cljs (util/inistrs->keywords (wrap-nodejs-ini filename))))
 
 (defn read-as-is
   ""
   [filename]
   #?(:clj (ini/read-ini filename))
-  #?(:cljs {}))
+  #?(:cljs (wrap-nodejs-ini filename)))
 
 (defn read-ini
   ""

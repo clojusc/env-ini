@@ -29,8 +29,27 @@
 
 #?(:cljs
   (defn jsx->clj
-    [obj]
-    (into {} (map #(vector % (aget data %)) (.keys js/Object data)))
+    [data & {:keys [nested? check?]
+             :or {nested? true check? true}}]
+    (cond
+      (and (not nested?) (not check?))
+        (into {} (map #(vector % (aget data %)) (.keys js/Object data)))
+      (and (not nested?) check?)
+        (if (object? data)
+          (into {} (map #(vector % (aget data %)) (.keys js/Object data)))
+          data)
+      (and nested? (not check?))
+        (into {} (map #(vector % (jsx->clj (aget data %)
+                                           :nested? nested?
+                                           :check? check?))
+                      (.keys js/Object data)))
+      (and nested? check?)
+        (if (object? data)
+          (into {} (map #(vector % (jsx->clj (aget data %)
+                                               :nested? nested?
+                                               :check? check?))
+                          (.keys js/Object data)))
+          data))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Utility Functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

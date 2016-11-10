@@ -7,7 +7,7 @@
 
 (defn getenv
   ([]
-    #?(:cljs (util/jsx->clj (aget-env)))
+    #?(:cljs (util/jsx->clj (aget-env) :nested? false :check? false))
     #?(:clj (System/getenv)))
   ([key]
     #?(:cljs (aget-env key))
