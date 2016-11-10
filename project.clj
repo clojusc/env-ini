@@ -8,7 +8,6 @@
     [[org.clojure/clojure "1.8.0"]
      [org.clojure/clojurescript "1.9.293"]
      [clojure-ini "0.0.2"]]
-  :source-paths ["src/clj" "src/cljc"]
   :plugins
     [[lein-cljsbuild "1.1.4"]
      [lein-npm "0.6.2"]]
@@ -18,14 +17,12 @@
   :cljsbuild {
     :builds [
       {:id "env-ini"
-       :source-paths ["src/cljs" "src/cljc"]
        :compiler
          {:main "env-ini.core"
           :asset-path "js/out"
           :output-to "resources/public/js/env_ini.js"
           :output-dir "resources/public/js/out"}}
       {:id "node"
-       :source-paths ["src/cljs" "src/cljc"]
        :compiler
          {:target :nodejs
           :output-to "target/node/env_ini.js"
