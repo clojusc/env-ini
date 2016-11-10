@@ -12,7 +12,7 @@
 *Access config data from the ENV or INI files*
 
 
-#### Table of Contents
+#### Contents
 
 * [Introduction](#introduction-)
 * [Usage](#usage-)
