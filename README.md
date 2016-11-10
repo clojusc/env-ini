@@ -34,6 +34,9 @@ support is provided by the Node.js better-require library.
 
 ## Usage
 
+
+### Clojure
+
 Data from the environment and a given configuration are loaded into the same
 data structure, one keyed off of `:env` and the other off of `:ini`. This is
 obvious after loading the data:
@@ -74,6 +77,25 @@ checked for the value associated with the `:my-ini-key` key in the section
 
 Note that environment variable names are loaded as lower-cased keywords (with
 underscores converte to dashes).
+
+
+### Clojurescript
+
+The usage is exactly the same from Clojurescript. First some setup:
+
+```clj
+(require '[clojusc.env-ini.core :as env-ini])
+```
+
+Then running the same code as above:
+
+```clj
+clojusc.env-ini.node-dev=> (def data (env-ini/load-data "~/.aws/credentials"))
+clojusc.env-ini.node-dev=> (pprint data)
+...
+clojusc.env-ini.node-dev=> (env-ini/get data :mysection :mykey)
+clojusc.env-ini.node-dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
+```
 
 
 ## License

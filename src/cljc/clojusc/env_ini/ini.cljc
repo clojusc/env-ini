@@ -2,22 +2,34 @@
   "Clojure INI support."
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojure-ini.core :as ini]
+            #?(:clj [clojure-ini.core :as ini])
             [clojusc.env-ini.util :as util])
-  (:import [clojure.lang Keyword])
+  #?(:clj (:import [clojure.lang Keyword]))
   (:refer-clojure :exclude [get read]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Wrapper for clojure-ini   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn read-as-keywords
+  ""
+  [filename]
+  #?(:clj (util/inistrs->keywords (ini/read-ini filename)))
+  #?(:cljs {}))
+
+(defn read-as-is
+  ""
+  [filename]
+  #?(:clj (ini/read-ini filename))
+  #?(:cljs {}))
+
 (defn read-ini
   ""
   [filename & {:keys [keywordize?]
                :or {keywordize? true}}]
   (if keywordize?
-    (util/inistrs->keywords (ini/read-ini filename))
-    (ini/read-ini filename)))
+    (read-as-keywords filename)
+    (read-as-is filename)))
 
 (def memoized-read-ini (memoize read-ini))
 

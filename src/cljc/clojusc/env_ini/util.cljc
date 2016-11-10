@@ -1,12 +1,10 @@
 (ns clojusc.env-ini.util
   "General utility functions."
-  #?(:clj (:require [clojure.string :as string]
-                    [clojure.walk :as walk]))
-
-  #?(:cljs (:require [clojure.string :as string]
-                     [clojure.walk :as walk]
-                     [goog.string :as gstring]
-                     [goog.string.format])))
+  (:require [clojure.string :as string]
+            [clojure.walk :as walk]
+            #?@(:cljs [
+            [goog.string :as gstring]
+            [goog.string.format]])))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   General Utility Functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -27,7 +25,7 @@
 (defn expand-home
   ""
   [filename]
-  (.replaceFirst filename "^~" (get-home)))
+  (string/replace-first filename "~" (get-home)))
 
 #?(:cljs
   (defn jsx->clj
