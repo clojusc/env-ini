@@ -17,13 +17,19 @@
       [[better-require "0.0.3"]]}
   :cljsbuild {
     :builds [
-    {:id "env-ini"
-     :source-paths ["src/cljs" "src/cljc"]
-     :compiler
-       {:main "env-ini.core"
-        :asset-path "js/out"
-        :output-to "resources/public/js/env-ini.js"
-        :output-dir "resources/public/js/out"}}]}
+      {:id "env-ini"
+       :source-paths ["src/cljs" "src/cljc"]
+       :compiler
+         {:main "env-ini.core"
+          :asset-path "js/out"
+          :output-to "resources/public/js/env_ini.js"
+          :output-dir "resources/public/js/out"}}
+      {:id "node"
+       :source-paths ["src/cljs" "src/cljc"]
+       :compiler
+         {:target :nodejs
+          :output-to "target/node/env_ini.js"
+          :output-dir "target/node"}}]}
   :aliases {
     "rhino-repl"
       ^{:doc "Start a Rhino-based Clojurescript REPL"}

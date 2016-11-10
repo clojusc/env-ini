@@ -4,7 +4,7 @@ repl:
 		--prompt-colour=yellow \
 		lein repl
 
-node-repl:
+node-repl: node
 	@rlwrap \
 		--command-name=cljs-node \
 		--prompt-colour=yellow \

@@ -1,5 +1,8 @@
 all: clj jar cljs
 
+node:
+	lein cljsbuild once node
+
 clj:
 	lein compile
 
