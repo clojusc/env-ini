@@ -1,10 +1,6 @@
 language: clojure
 script:
-  - lein compile
-  - lein jar
-  - lein cljsbuild once env-ini
-  - lein cljsbuild once node
-  - lein test
+  - make travis
 jdk:
   - oraclejdk8
   - oraclejdk7
