@@ -14,14 +14,16 @@
   :npm
     {:dependencies
       [[ini "1.3.4"]]}
+  :clean-targets ^{:protect false}
+    ["resources/public/js"
+     "target"]
   :cljsbuild {
     :builds [
       {:id "env-ini"
        :compiler
          {:main "env-ini.core"
-          :asset-path "js/out"
           :output-to "resources/public/js/env_ini.js"
-          :output-dir "resources/public/js/out"}}
+          :output-dir "resources/public/js"}}
       {:id "node"
        :compiler
          {:target :nodejs
