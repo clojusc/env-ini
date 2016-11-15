@@ -3,7 +3,7 @@
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
             #?(:clj [clojure-ini.core :as ini])
-            [clojusc.cljs-tools.core :as tools]
+            [clojusc.cljs-tools :as tools]
             [clojusc.env-ini.util :as util])
   #?(:clj (:import [clojure.lang Keyword]))
   (:refer-clojure :exclude [get read]))

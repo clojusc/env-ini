@@ -8,7 +8,7 @@
             [clojusc.env-ini.ini :as ini]
             [clojusc.env-ini.system :as system]
             [clojusc.env-ini.util :as util]
-            [clojusc.cljs-tools.core :as tools]))
+            [clojusc.cljs-tools :as tools]))
 
 (defn show-methods
   ""

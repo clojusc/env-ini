@@ -1,6 +1,6 @@
 (ns clojusc.env-ini.system
   "Clojure(script) system support."
-  (:require [clojusc.cljs-tools.core :as tools]))
+  (:require [clojusc.cljs-tools :as tools]))
 
 #?(:cljs
   (def aget-env (partial aget js/process "env")))
