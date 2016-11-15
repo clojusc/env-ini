@@ -2,7 +2,7 @@
   "General utility functions."
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojusc.cljs-tools.core :as tools]))
+            [clojusc.cljs-tools :as tools]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Utility Functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
