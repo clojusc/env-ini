@@ -21,7 +21,7 @@
       (->> "utf-8"
            (.readFileSync fs filename)
            (.parse ini)
-           (util/jsx->clj)))))
+           (tools/jsx->clj)))))
 
 (defn read-as-keywords
   ""
