@@ -3,6 +3,7 @@
   (:require [clojure.string :as string]
             [clojure.walk :as walk]
             #?(:clj [clojure-ini.core :as ini])
+            [clojusc.cljs-tools.core :as tools]
             [clojusc.env-ini.util :as util])
   #?(:clj (:import [clojure.lang Keyword]))
   (:refer-clojure :exclude [get read]))
@@ -49,7 +50,7 @@
                :or {force-reload? false keywordize? true}
                :as all-args}]
   (let [args (flatten
-               (into [(util/expand-home filename)]
+               (into [(tools/expand-home filename)]
                  (assoc
                    (dissoc all-args :force-reload?)
                    :keywordize? keywordize?)))]
