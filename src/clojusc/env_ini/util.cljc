@@ -1,8 +1,10 @@
 (ns clojusc.env-ini.util
   "General utility functions."
-  (:require [clojure.string :as string]
+  (:require [clojure.java.io :as io]
+            [clojure.string :as string]
             [clojure.walk :as walk]
-            [clojusc.cljs-tools :as tools]))
+            [clojusc.cljs-tools :as tools])
+  (:import [java.util.jar JarFile]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   ENV Utility Functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,3 +54,10 @@
   [data]
   (let [f (fn [[k v]] (if (string? k) [(inistr->keyword k) v] [k v]))]
     (walk/postwalk (fn [x] (if (map? x) (into {} (map f x)) x)) data)))
+
+(defn get-filename-or-resource
+  [filename]
+  (let [resource (io/resource filename)]
+    (if (nil? resource)
+      filename
+      resource)))
