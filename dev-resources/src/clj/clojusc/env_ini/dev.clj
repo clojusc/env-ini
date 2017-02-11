@@ -1,5 +1,6 @@
 (ns clojusc.env-ini.dev
-  (:require [clojure.pprint :refer [print-table]]
+  (:require [clojure.java.io :as io]
+            [clojure.pprint :refer [print-table]]
             [clojure.reflect :refer [reflect]]
             [clojure.string :as string]
             [clojure-ini.core :as config-ini]
@@ -15,5 +16,6 @@
   [obj]
   (print-table
     (sort-by :name
-      (filter :exception-types (:members (reflect obj))))))
-
+      (filter (fn [x]
+                (contains? (:flags x) :public))
+              (:members (reflect obj))))))
