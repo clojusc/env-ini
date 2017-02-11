@@ -57,7 +57,8 @@
       :source-paths ["test/clj"]}
     :dev {
       :source-paths ["dev-resources/src/clj"]
-      :repl-options {:init-ns clojusc.env-ini.dev}
+      :repl-options {
+        :init-ns clojusc.env-ini.dev}
       :dependencies [
         [org.clojure/tools.namespace "0.2.11"
          :exclusions [org.clojure/clojure]]]}})
