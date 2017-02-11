@@ -49,8 +49,9 @@
   [filename & {:keys [force-reload? keywordize?]
                :or {force-reload? false keywordize? true}
                :as all-args}]
-  (let [args (flatten
-               (into [(tools/expand-home filename)]
+  (let [file (util/get-filename-or-resource filename)
+        args (flatten
+               (into [(tools/expand-home file)]
                  (assoc
                    (dissoc all-args :force-reload?)
                    :keywordize? keywordize?)))]
