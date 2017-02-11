@@ -6,11 +6,11 @@
      :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies
     [[org.clojure/clojure "1.8.0"]
-     [org.clojure/clojurescript "1.9.293"]
+     [org.clojure/clojurescript "1.9.473"]
      [clojure-ini "0.0.2"]
      [clojusc/cljs-tools "0.1.2"]]
   :plugins
-    [[lein-cljsbuild "1.1.4"]
+    [[lein-cljsbuild "1.1.5"]
      [lein-npm "0.6.2"]]
   :npm
     {:dependencies
@@ -48,7 +48,7 @@
     :test {
       :plugins [
         [jonase/eastwood "0.2.3" :exclusions [org.clojure/clojure]]
-        [lein-kibit "0.1.2" :exclusions [org.clojure/clojure]]]
+        [lein-kibit "0.1.3" :exclusions [org.clojure/clojure]]]
       :test-selectors {
         :default :unit
         :unit :unit
