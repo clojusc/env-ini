@@ -6,7 +6,7 @@
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [
     [org.clojure/clojure "1.8.0"]
-    [org.clojure/clojurescript "1.9.473"]
+    [org.clojure/clojurescript "1.9.495"]
     [clojure-ini "0.0.2"]
     [clojusc/cljs-tools "0.1.2"]]
   :plugins [
