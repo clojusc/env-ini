@@ -107,7 +107,7 @@ clojusc.env-ini.node-dev=> (env-ini/get data :my-env-key :mysection :my-ini-key)
 
 ## License [&#x219F;](#contents)
 
-Copyright © 2016, Clojure-Aided Enrichment Center
+Copyright © 2016-2017, Clojure-Aided Enrichment Center
 
 Copyright © 2016, Element 84, Inc.
 
