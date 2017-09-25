@@ -6,11 +6,11 @@
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [
     [org.clojure/clojure "1.8.0"]
-    [org.clojure/clojurescript "1.9.521"]
+    [org.clojure/clojurescript "1.9.908"]
     [clojure-ini "0.0.2"]
-    [clojusc/cljs-tools "0.1.2"]]
+    [clojusc/cljs-tools "0.2.0-SNAPSHOT"]]
   :plugins [
-    [lein-cljsbuild "1.1.5"]
+    [lein-cljsbuild "1.1.7"]
     [lein-npm "0.6.2"]]
   :npm {
     :dependencies [
@@ -36,10 +36,10 @@
       :source-paths ["src" "test/clj"]}
     :test {
       :plugins [
-        [lein-ancient "0.6.10"]
-        [jonase/eastwood "0.2.3" :exclusions [org.clojure/clojure]]
+        [lein-ancient "0.6.12"]
+        [jonase/eastwood "0.2.4" :exclusions [org.clojure/clojure]]
         [lein-bikeshed "0.4.1" :exclusions [org.clojure/tools.namespace]]
-        [lein-kibit "0.1.3" :exclusions [org.clojure/clojure]]
+        [lein-kibit "0.1.5" :exclusions [org.clojure/clojure]]
         [venantius/yagni "0.1.4"]]
       :test-selectors {
         :default :unit
