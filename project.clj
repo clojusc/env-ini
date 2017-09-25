@@ -30,19 +30,6 @@
         :target :nodejs
         :output-to "target/node/env_ini.js"
         :output-dir "target/node"}}]}
-  :aliases {
-    "rhino-repl"
-      ^{:doc "Start a Rhino-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/rhino-dev.clj"]
-    "node-repl"
-      ^{:doc "Start a Node.js-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/node-dev.clj"]
-    "browser-repl"
-      ^{:doc "Start a browser-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/browser-dev.clj"]}
   :profiles {
     :uberjar {
       :aot :all
@@ -66,4 +53,35 @@
         :init-ns clojusc.env-ini.dev}
       :dependencies [
         [org.clojure/tools.namespace "0.2.11"
-         :exclusions [org.clojure/clojure]]]}})
+         :exclusions [org.clojure/clojure]]]}}
+  :aliases {
+    "rhino-repl"
+      ^{:doc "Start a Rhino-based Clojurescript REPL"}
+      ["trampoline" "run" "-m" "clojure.main"
+       "dev-resources/src/clj/clojusc/env_ini/rhino-dev.clj"]
+    "node-repl"
+      ^{:doc "Start a Node.js-based Clojurescript REPL"}
+      ["trampoline" "run" "-m" "clojure.main"
+       "dev-resources/src/clj/clojusc/env_ini/node-dev.clj"]
+    "browser-repl"
+      ^{:doc "Start a browser-based Clojurescript REPL"}
+      ["trampoline" "run" "-m" "clojure.main"
+       "dev-resources/src/clj/clojusc/env_ini/browser-dev.clj"]
+    "check-deps" [
+      "with-profile" "+test" "ancient" "check" ":all"]
+    "kibit" [
+      "with-profile" "+test" "do"
+        ["shell" "echo" "== Kibit =="]
+        ["kibit"]]
+    "outlaw" [
+      "with-profile" "+test"
+      "eastwood" "{:namespaces [:source-paths] :source-paths [\"src\"]}"]
+    "lint" [
+      "with-profile" "+test" "do"
+        ["check"] ["kibit"] ["outlaw"]]
+    "build" ["with-profile" "+test" "do"
+      ["check-deps"]
+      ["lint"]
+      ["test"]
+      ["compile"]
+      ["uberjar"]]})
