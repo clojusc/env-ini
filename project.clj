@@ -41,6 +41,7 @@
         [lein-ancient "0.6.12"]
         [lein-bikeshed "0.4.1"]
         [lein-kibit "0.1.5"]
+        [lein-shell "0.5.0"]
         [venantius/yagni "0.1.4"]]
       :test-selectors {
         :default :unit
