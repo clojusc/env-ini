@@ -4,6 +4,7 @@
   :license {
     :name "Apache License, Version 2.0"
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
+  :exclusions [org.clojure/clojure]
   :dependencies [
     [org.clojure/clojure "1.8.0"]
     [org.clojure/clojurescript "1.9.908"]
@@ -31,15 +32,15 @@
         :output-to "target/node/env_ini.js"
         :output-dir "target/node"}}]}
   :profiles {
-    :uberjar {
+    :ubercompile {
       :aot :all
       :source-paths ["src" "test/clj"]}
     :test {
       :plugins [
+        [jonase/eastwood "0.2.4"]
         [lein-ancient "0.6.12"]
-        [jonase/eastwood "0.2.4" :exclusions [org.clojure/clojure]]
-        [lein-bikeshed "0.4.1" :exclusions [org.clojure/tools.namespace]]
-        [lein-kibit "0.1.5" :exclusions [org.clojure/clojure]]
+        [lein-bikeshed "0.4.1"]
+        [lein-kibit "0.1.5"]
         [venantius/yagni "0.1.4"]]
       :test-selectors {
         :default :unit
@@ -84,4 +85,6 @@
       ["lint"]
       ["test"]
       ["compile"]
+      ["with-profile" "+ubercompile" "compile"]
+      ["clean"]
       ["uberjar"]]})
