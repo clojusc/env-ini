@@ -1,16 +1,17 @@
-(defproject clojusc/env-ini "0.3.1-SNAPSHOT"
+(defproject clojusc/env-ini "0.4.0"
   :description "Clojure(script) functions for accessing config data from the ENV or INI files"
   :url "https://github.com/clojusc/env-ini"
   :license {
     :name "Apache License, Version 2.0"
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
+  :exclusions [org.clojure/clojure]
   :dependencies [
-    [org.clojure/clojure "1.8.0"]
-    [org.clojure/clojurescript "1.9.521"]
     [clojure-ini "0.0.2"]
-    [clojusc/cljs-tools "0.1.2"]]
+    [clojusc/cljs-tools "0.2.0"]
+    [org.clojure/clojure "1.8.0"]
+    [org.clojure/clojurescript "1.9.946"]]
   :plugins [
-    [lein-cljsbuild "1.1.5"]
+    [lein-cljsbuild "1.1.7"]
     [lein-npm "0.6.2"]]
   :npm {
     :dependencies [
@@ -30,29 +31,17 @@
         :target :nodejs
         :output-to "target/node/env_ini.js"
         :output-dir "target/node"}}]}
-  :aliases {
-    "rhino-repl"
-      ^{:doc "Start a Rhino-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/rhino-dev.clj"]
-    "node-repl"
-      ^{:doc "Start a Node.js-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/node-dev.clj"]
-    "browser-repl"
-      ^{:doc "Start a browser-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/browser-dev.clj"]}
   :profiles {
-    :uberjar {
+    :ubercompile {
       :aot :all
       :source-paths ["src" "test/clj"]}
     :test {
       :plugins [
-        [lein-ancient "0.6.10"]
-        [jonase/eastwood "0.2.3" :exclusions [org.clojure/clojure]]
-        [lein-bikeshed "0.4.1" :exclusions [org.clojure/tools.namespace]]
-        [lein-kibit "0.1.3" :exclusions [org.clojure/clojure]]
+        [jonase/eastwood "0.2.4"]
+        [lein-ancient "0.6.12"]
+        [lein-bikeshed "0.4.1"]
+        [lein-kibit "0.1.5"]
+        [lein-shell "0.5.0"]
         [venantius/yagni "0.1.4"]]
       :test-selectors {
         :default :unit
@@ -66,4 +55,25 @@
         :init-ns clojusc.env-ini.dev}
       :dependencies [
         [org.clojure/tools.namespace "0.2.11"
-         :exclusions [org.clojure/clojure]]]}})
+         :exclusions [org.clojure/clojure]]]}}
+  :aliases {
+    "check-deps" [
+      "with-profile" "+test" "ancient" "check" ":all"]
+    "kibit" [
+      "with-profile" "+test" "do"
+        ["shell" "echo" "== Kibit =="]
+        ["kibit"]]
+    "outlaw" [
+      "with-profile" "+test"
+      "eastwood" "{:namespaces [:source-paths] :source-paths [\"src\"]}"]
+    "lint" [
+      "with-profile" "+test" "do"
+        ["check"] ["kibit"] ["outlaw"]]
+    "build" ["with-profile" "+test" "do"
+      ["check-deps"]
+      ["lint"]
+      ["test"]
+      ["compile"]
+      ["with-profile" "+ubercompile" "compile"]
+      ["clean"]
+      ["uberjar"]]})
