@@ -56,18 +56,6 @@
         [org.clojure/tools.namespace "0.2.11"
          :exclusions [org.clojure/clojure]]]}}
   :aliases {
-    "rhino-repl"
-      ^{:doc "Start a Rhino-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/rhino-dev.clj"]
-    "node-repl"
-      ^{:doc "Start a Node.js-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/node-dev.clj"]
-    "browser-repl"
-      ^{:doc "Start a browser-based Clojurescript REPL"}
-      ["trampoline" "run" "-m" "clojure.main"
-       "dev-resources/src/clj/clojusc/env_ini/browser-dev.clj"]
     "check-deps" [
       "with-profile" "+test" "ancient" "check" ":all"]
     "kibit" [
