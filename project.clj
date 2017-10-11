@@ -1,4 +1,4 @@
-(defproject clojusc/env-ini "0.4.0-SNAPSHOT"
+(defproject clojusc/env-ini "0.4.0"
   :description "Clojure(script) functions for accessing config data from the ENV or INI files"
   :url "https://github.com/clojusc/env-ini"
   :license {
@@ -6,10 +6,10 @@
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :exclusions [org.clojure/clojure]
   :dependencies [
-    [org.clojure/clojure "1.8.0"]
-    [org.clojure/clojurescript "1.9.946"]
     [clojure-ini "0.0.2"]
-    [clojusc/cljs-tools "0.2.0"]]
+    [clojusc/cljs-tools "0.2.0"]
+    [org.clojure/clojure "1.8.0"]
+    [org.clojure/clojurescript "1.9.946"]]
   :plugins [
     [lein-cljsbuild "1.1.7"]
     [lein-npm "0.6.2"]]
